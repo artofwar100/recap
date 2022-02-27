@@ -1,0 +1,69 @@
+<h1 class="text-warning" *ngIf="pageMode == pageModeEnum.Edit">
+  Editing : {{student.name}}
+</h1>
+
+<form
+  class="example-form"
+  [formGroup]="studentForm"
+  (ngSubmit)="submitCreateEditStudent()"
+>
+  <mat-form-field class="example-full-width d-flex" appearance="fill">
+    <mat-label class="text-info">Name</mat-label
+    ><input matInput type="text" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width d-flex" appearance="fill">
+    <mat-label class="text-info">Grade</mat-label
+    ><input matInput type="text" formControlName="grade" />
+  </mat-form-field>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label class="text-info">Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option [value]="0">Male</mat-option>
+        <mat-option [value]="1">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label class="text-info">Class</mat-label>
+      <mat-select multiple formControlName="classesId">
+        <mat-option *ngFor="let class of classLookUp" [value]="class.id">
+          {{class.subject}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width d-flex" appearance="fill">
+    <mat-label class="text-info">Bus</mat-label>
+    <mat-select formControlName="busId">
+      <mat-option *ngFor="let bus of busLookUp" [value]="bus.id">
+        {{ bus.model }} - {{ bus.fuelType }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <button
+      *ngIf="pageMode == pageModeEnum.Edit"
+      class="bg-warning text-dark"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      Save
+    </button>
+    <button
+      *ngIf="pageMode == pageModeEnum.Create"
+      class="lightGreenBtn"
+      type="submit"
+      mat-raised-button
+    >
+      Add
+    </button>
+  </div>
+</form>

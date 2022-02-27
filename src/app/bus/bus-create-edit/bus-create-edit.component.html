@@ -1,0 +1,48 @@
+<h1 class="text-warning" *ngIf="pageMode == pageModeEnum.Edit">
+  Editing : {{ bus.model }}
+</h1>
+
+<form
+  class="example-form"
+  [formGroup]="busForm"
+  (ngSubmit)="submitCreateEditBus()"
+>
+  <mat-form-field class="example-full-width d-flex" appearance="fill">
+    <mat-label class="text-info">Name</mat-label
+    ><input
+      matInput
+      type="text"
+      formControlName="model"
+      placeholder="Bus Model"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label class="text-info">Fuel Type</mat-label>
+    <mat-select formControlName="fuelType">
+      <mat-option [value]="0">Gas</mat-option>
+      <mat-option [value]="1">Electric</mat-option>
+      <mat-option [value]="2">Solar</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <button
+      class="bg-warning text-dark"
+      type="submit"
+      *ngIf="pageMode == pageModeEnum.Edit"
+      mat-raised-button
+      color="primary"
+    >
+      Save
+    </button>
+    <button
+      class="lightGreenBtn"
+      type="submit"
+      *ngIf="pageMode == pageModeEnum.Create"
+      mat-raised-button
+    >
+      Add
+    </button>
+  </div>
+</form>

@@ -1,0 +1,12 @@
+.kiddos{
+    font-size: 29px;
+    font-family: cursive;
+}
+.bg-lightBlue{
+    background-color: rgb(28, 171, 242);
+    height: 47px;
+    display: list-item;
+}
+.bg-lightGreen{
+    background-color: rgb(160, 216, 101);
+}

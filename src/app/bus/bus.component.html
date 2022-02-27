@@ -1,0 +1,45 @@
+<div class="mt-5">
+    <a class="hover font-weight-bold h5" routerLink="/bus-Create">Add New Bus</a>
+  </div>
+  <table class="table mt-1">
+    <thead>
+      <tr>
+        <th scope="col">Model</th>
+        <th scope="col">Fuel Type</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bus of buses">
+        <td>{{ bus.model }}</td>
+        <td *ngIf="bus.fuelType == 0">Gas</td>
+        <td *ngIf="bus.fuelType == 1">Electric</td>
+        <td *ngIf="bus.fuelType == 2">Solar</td>
+        <td>
+          <a class="hover mr-2 text-info" routerLink="/bus-details/{{ bus.id }}">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >info</mat-icon
+            >
+          </a>
+          <a class="hover mr-2 text-danger" (click)="deleteBus(bus.id)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >delete</mat-icon
+            >
+          </a>
+          <a class="hover mr-2 text-success" routerLink="/bus-Edit/{{ bus.id }}">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >edit</mat-icon
+            >
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div
+    class="spinner-border text-warning h3 spinnerIcon"
+    *ngIf="spinner == true"
+    role="status"
+  >
+    <span class="sr-only">Loading...</span>
+  </div>

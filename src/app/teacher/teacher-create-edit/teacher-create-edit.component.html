@@ -1,0 +1,54 @@
+<h1 class="text-warning" *ngIf="pageMode == pageModeEnum.Edit">
+  Editing : {{ teacher.name }}
+</h1>
+
+<form
+  class="example-form"
+  [formGroup]="teacherForm"
+  (ngSubmit)="submitCreateEditTeacher()"
+>
+  <mat-form-field class="example-full-width d-flex" appearance="fill">
+    <mat-label class="text-info">Name</mat-label
+    ><input
+      matInput
+      type="text"
+      formControlName="name"
+      placeholder="Bus Model"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width d-flex" appearance="fill">
+    <mat-label class="text-info">Age</mat-label
+    ><input matInput type="text" formControlName="age" />
+  </mat-form-field>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label class="text-info">Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option [value]="0">Male</mat-option>
+        <mat-option [value]="1">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button
+      class="bg-warning text-dark"
+      type="submit"
+      *ngIf="pageMode == pageModeEnum.Edit"
+      mat-raised-button
+      color="primary"
+    >
+      Save
+    </button>
+    <button
+      class="lightGreenBtn"
+      type="submit"
+      *ngIf="pageMode == pageModeEnum.Create"
+      mat-raised-button
+    >
+      Add
+    </button>
+  </div>
+</form>

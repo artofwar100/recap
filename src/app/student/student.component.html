@@ -1,0 +1,57 @@
+<div class="mt-5">
+    <a class="hover font-weight-bold h5" routerLink="/student-Create"
+      >Add New Student</a
+    >
+  </div>
+  <table class="table mt-1">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Grade</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Bus</th>
+        <th scope="col">Classes</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.name }}</td>
+        <td>{{ student.grade }}</td>
+        <td *ngIf="student.gender == 0">Male</td>
+        <td *ngIf="student.gender == 1">Female</td>
+        <td>{{ student.bus.model }}</td>
+        <td>
+          <span *ngFor="let studentClasses of student.classes">
+            {{studentClasses.subject}},
+          </span>
+        </td>
+        <td>
+          <a class="hover mr-2 text-info" routerLink="/student-details/{{ student.id }}">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >info</mat-icon
+            >
+          </a>
+          <a class="hover mr-2 text-danger" (click)="deleteStudent(student.id)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >delete</mat-icon
+            >
+          </a>
+          <a class="hover mr-2 text-success" routerLink="/student-Edit/{{ student.id }}">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"
+              >edit</mat-icon
+            >
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div
+    class="spinner-border text-warning h3 spinnerIcon"
+    *ngIf="spinner == true"
+    role="status"
+  >
+    <span class="sr-only">Loading...</span>
+  </div>
+  
